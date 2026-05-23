@@ -12,15 +12,16 @@ const SLIDES = [
     label: "Spécialités locales",
     title: "Des saveurs qui",
     highlight: "racontent une histoire",
-    subtitle: "Cuisine authentique, produits locaux, chaleur humaine. Chaque plat est préparé avec soin et passion.",
+    subtitle:
+      "Cuisine authentique, produits locaux, chaleur humaine. Chaque plat est préparé avec soin et passion.",
     image: "/hero-slide-1.jpg",
     bgFallback: "from-brand-bg via-ink-900 to-ink-800",
     accentColor: "#FE9922",
     stats: [
-      { value: "8",    suffix: "+", label: "Années d'expérience" },
-      { value: "150",  suffix: "+", label: "Événements réalisés" },
-      { value: "30",   suffix: "+", label: "Plats maîtrisés" },
-      { value: "5",  suffix: "★", label: "Note moyenne" },
+      { value: "8", suffix: "+", label: "Années d'expérience" },
+      { value: "150", suffix: "+", label: "Événements réalisés" },
+      { value: "30", suffix: "+", label: "Plats maîtrisés" },
+      { value: "5", suffix: "★", label: "Note moyenne" },
     ],
   },
   {
@@ -28,15 +29,16 @@ const SLIDES = [
     label: "Catering & Événements",
     title: "Vos moments",
     highlight: "mémorables",
-    subtitle: "Mariages, séminaires, anniversaires — nous prenons soin de chaque détail pour vous.",
+    subtitle:
+      "Mariages, séminaires, anniversaires — nous prenons soin de chaque détail pour vous.",
     image: "/hero-slide-2.jpg",
     bgFallback: "from-ink-900 via-brand-dark to-brand-bg",
     accentColor: "#FE9922",
     stats: [
-      { value: "150",  suffix: "+", label: "Événements organisés" },
-      { value: "15",  suffix: "+", label: "Places assises" },
-      { value: "100",   suffix: "%", label: "Fait maison" },
-      { value: "100",  suffix: "%", label: "Clients satisfaits" },
+      { value: "150", suffix: "+", label: "Événements organisés" },
+      { value: "15", suffix: "+", label: "Places assises" },
+      { value: "100", suffix: "%", label: "Fait maison" },
+      { value: "100", suffix: "%", label: "Clients satisfaits" },
     ],
   },
   {
@@ -44,15 +46,16 @@ const SLIDES = [
     label: "Livraison à domicile",
     title: "Le goût du",
     highlight: "fait maison",
-    subtitle: "Vos plats préférés livrés chauds, directement à votre porte en moins de 30 minutes.",
+    subtitle:
+      "Vos plats préférés livrés chauds, directement à votre porte en moins de 30 minutes.",
     image: "/hero-slide-3.jpg",
     bgFallback: "from-ink-900 via-ink-800 to-brand-bg",
     accentColor: "#FE9922",
     stats: [
-      { value: "30",   suffix: " min", label: "Délai de livraison" },
-      { value: "50",   suffix: " km", label: "Zone de couverture" },
-      { value: "50",   suffix: "+", label: "Plats disponibles" },
-      { value: "6",    suffix: "j/7",  label: "Disponible" },
+      { value: "30", suffix: " min", label: "Délai de livraison" },
+      { value: "50", suffix: " km", label: "Zone de couverture" },
+      { value: "50", suffix: "+", label: "Plats disponibles" },
+      { value: "6", suffix: "j/7", label: "Disponible" },
     ],
   },
 ];
@@ -63,9 +66,7 @@ function StatItem({ value, suffix, label, accentColor, triggerCount }) {
   const isDecimal = String(value).includes(".");
   const count = useCountUp(numeric, 1600, triggerCount);
 
-  const display = isDecimal
-    ? count.toFixed(1)
-    : Math.floor(count).toString();
+  const display = isDecimal ? count.toFixed(1) : Math.floor(count).toString();
 
   return (
     <div className="flex flex-col gap-1">
@@ -73,7 +74,8 @@ function StatItem({ value, suffix, label, accentColor, triggerCount }) {
         className="font-number font-bold text-3xl sm:text-4xl leading-none"
         style={{ color: accentColor }}
       >
-        {display}{suffix}
+        {display}
+        {suffix}
       </span>
       <span className="text-cream-200/65 text-xs sm:text-sm leading-snug font-body">
         {label}
@@ -101,17 +103,20 @@ export default function Hero() {
   }, [contentVisible]);
 
   // Changement de slide : fade out → change → fade in
-  const goToSlide = useCallback((nextIndex) => {
-    if (animating) return;
-    setAnimating(true);
-    setContentVisible(false);
+  const goToSlide = useCallback(
+    (nextIndex) => {
+      if (animating) return;
+      setAnimating(true);
+      setContentVisible(false);
 
-    setTimeout(() => {
-      setCurrent(nextIndex);
-      setContentVisible(true);
-      setAnimating(false);
-    }, 400);
-  }, [animating]);
+      setTimeout(() => {
+        setCurrent(nextIndex);
+        setContentVisible(true);
+        setAnimating(false);
+      }, 400);
+    },
+    [animating],
+  );
 
   // Auto-avance toutes les 6 secondes
   useEffect(() => {
@@ -162,16 +167,25 @@ export default function Hero() {
     >
       {/* ── FOND : image réelle OU dégradé de secours ──── */}
       {slide.image ? (
-        <img
-          src={slide.image}
-          alt=""
-          aria-hidden="true"
-          className="absolute inset-0 w-full h-full object-cover object-center"
-          style={{
-            transition: "opacity 0.5s ease",
-            opacity: contentVisible ? 1 : 0.7,
-          }}
-        />
+        <picture>
+          <source
+            srcSet={`${slide.image}?w=768&q=75`}
+            media="(max-width: 768px)"
+            type="image/webp"
+          />
+          <img
+            src={slide.image}
+            alt=""
+            aria-hidden="true"
+            loading="eager"
+            fetchpriority="high"
+            className="absolute inset-0 w-full h-full object-cover object-center"
+            style={{
+              transition: "opacity 0.5s ease",
+              opacity: contentVisible ? 1 : 0.7,
+            }}
+          />
+        </picture>
       ) : (
         // Fond dégradé de secours (retiré une fois que tu as les photos)
         <div
@@ -190,7 +204,8 @@ export default function Hero() {
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
-          background: "linear-gradient(to right, rgba(17,12,8,0.5) 0%, rgba(17,12,8,0.1) 60%, transparent 100%)",
+          background:
+            "linear-gradient(to right, rgba(17,12,8,0.5) 0%, rgba(17,12,8,0.1) 60%, transparent 100%)",
           zIndex: 1,
         }}
       />
@@ -226,18 +241,21 @@ export default function Hero() {
             aria-label={`Aller au slide ${i + 1}`}
             className="rounded-full transition-all duration-300"
             style={{
-              width:  i === current ? "6px" : "6px",
+              width: i === current ? "6px" : "6px",
               height: i === current ? "24px" : "6px",
-              backgroundColor: i === current ? slide.accentColor : "rgba(249,243,232,0.35)",
+              backgroundColor:
+                i === current ? slide.accentColor : "rgba(249,243,232,0.35)",
             }}
           />
         ))}
       </div>
 
       {/* ── CONTENU PRINCIPAL ───────────────────────────── */}
-      <div className="container-main relative w-full pb-16 lg:pb-24 pt-32" style={{ zIndex: 3 }}>
+      <div
+        className="container-main relative w-full pb-16 lg:pb-24 pt-32"
+        style={{ zIndex: 3 }}
+      >
         <div className="max-w-3xl">
-
           {/* Overline */}
           <div
             className="flex items-center gap-3 mb-5 transition-all duration-500"
@@ -345,7 +363,8 @@ export default function Hero() {
             style={{
               height: "6px",
               width: i === current ? "24px" : "6px",
-              backgroundColor: i === current ? slide.accentColor : "rgba(249,243,232,0.35)",
+              backgroundColor:
+                i === current ? slide.accentColor : "rgba(249,243,232,0.35)",
             }}
           />
         ))}

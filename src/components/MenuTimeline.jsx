@@ -56,6 +56,8 @@ function HangingCard({ item, index, sway, onAddToCart }) {
             src={item.image}
             alt={item.name}
             draggable="false"
+            loading="lazy" // ← ajouter
+            decoding="async" // ← ajouter
             className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.055]"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#160B05]/42 via-transparent to-transparent" />
@@ -138,7 +140,10 @@ export default function MenuTimeline({ items, onAddToCart }) {
       <div className="pointer-events-none absolute left-0 top-0 z-20 h-full w-16 bg-gradient-to-r from-[#F9F3E8] to-transparent sm:w-28" />
       <div className="pointer-events-none absolute right-0 top-0 z-20 h-full w-16 bg-gradient-to-l from-[#F9F3E8] to-transparent sm:w-28" />
 
-      <div ref={viewportRef} className="relative z-0 mx-auto max-w-[88rem] overflow-hidden py-3">
+      <div
+        ref={viewportRef}
+        className="relative z-0 mx-auto max-w-[88rem] overflow-hidden py-3"
+      >
         <motion.div
           ref={trackRef}
           drag="x"

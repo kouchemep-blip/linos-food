@@ -6,17 +6,17 @@ export function whatsappLink(message) {
 
 export const WHATSAPP_MESSAGES = {
   reservation:
-    "Bonjour Cheffe, je viens du site Lino's Food et je souhaite reserver une table. Pouvez-vous me confirmer les disponibilites ?",
+    "Bonjour, je souhaite reserver une table chez Lino's Food. Pourriez-vous me confirmer les disponibilites, s'il vous plait ?",
   order:
-    "Bonjour Cheffe, je viens du site Lino's Food et je souhaite commander un plat. Pouvez-vous me guider pour passer ma commande ?",
+    "Bonjour, je souhaite passer une commande chez Lino's Food. Pouvez-vous m'indiquer les plats disponibles et la marche a suivre ?",
   quote:
-    "Bonjour Cheffe, je viens du site Lino's Food et je souhaite demander un devis pour un service traiteur ou un evenement.",
+    "Bonjour, je souhaite obtenir un devis pour un service traiteur avec Lino's Food. Pouvez-vous me renseigner ?",
   menu:
-    "Bonjour Cheffe, je viens du site Lino's Food. J'ai clique sur Voir la carte et je souhaite avoir des recommandations ou plus d'informations sur les plats.",
+    "Bonjour, je consulte la carte de Lino's Food et j'aimerais avoir quelques recommandations sur les plats.",
   eventContact:
-    "Bonjour Cheffe, je viens du site Lino's Food. J'ai clique sur Nous contacter dans la section evenement a organiser et je souhaite organiser un evenement.",
+    "Bonjour, je souhaite organiser un evenement avec Lino's Food. Pouvez-vous me donner les informations pour un accompagnement personnalise ?",
   cateringQuote:
-    "Bonjour Cheffe, je viens du site Lino's Food. J'ai clique sur Demander un devis gratuit dans la section service traiteur et je souhaite un devis personnalise.",
+    "Bonjour, je souhaite demander un devis gratuit pour le service traiteur de Lino's Food. Voici les details de mon besoin :",
   navbarReservation:
-    "Bonjour Cheffe, je viens du site Lino's Food. J'ai clique sur le bouton Reserver dans la navbar et je souhaite reserver une table.",
+    "Bonjour, je souhaite reserver une table chez Lino's Food. Pouvez-vous me confirmer les horaires disponibles ?",
 };

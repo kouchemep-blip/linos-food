@@ -24,9 +24,9 @@ export default function Footer() {
 
         <div className="flex flex-1 flex-col justify-between py-8">
           <br /> <br />
-          <h6 className="font-genty select-none text-[clamp(6rem,22vw,22rem)] font-bold leading-[0.72] tracking-[-0.04em]">
+          <p className="font-genty select-none text-[clamp(6rem,22vw,22rem)] font-bold leading-[0.72] tracking-[-0.04em]">
             Lino's
-          </h6>
+          </p>
 
           <div className="grid gap-8 py-8 md:grid-cols-[1.1fr_0.8fr_1fr] md:items-end">
             <div>
